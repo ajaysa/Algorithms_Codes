@@ -8,12 +8,24 @@ class Node
 {
 	char val;
 	bool marker;
-	vector <Node *> child;
+	
 	public:
+		vector <Node *> child;
+
 		Node()
 		{
 			val = ' ';
 			marker = false;
+		}
+
+		~Node()
+		{
+			cout<<"destroying object\n";
+		}
+
+		void freechild()
+		{
+			vector <Node *>().swap(child);
 		}
 
 		Node * findchar(char ch)
@@ -58,6 +70,22 @@ class Trie
 		Trie()
 		{
 			root = new Node;
+		}
+
+		void freemem(Node *root)
+		{
+			int i;
+			for(i=0; i<root->child.size(); i++)
+			{
+				freemem(root->child[i]);
+			}
+			root->freechild();
+			delete root;
+		}
+
+		~Trie()
+		{
+			freemem(root);
 		}
 
 		void add(string str)
