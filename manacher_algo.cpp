@@ -1,3 +1,8 @@
+/*
+  References : 
+  http://articles.leetcode.com/longest-palindromic-substring-part-ii
+*/
+
 #include <iostream>
 #include <string>
 
